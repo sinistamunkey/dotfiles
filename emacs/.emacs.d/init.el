@@ -32,6 +32,18 @@
 ;; ----------------------------------------------------
 (global-linum-mode)
 
+
+;; Custom helpers
+(defun uuid ()
+  ;; Generate a UUID at the cursor.
+  ;; Courtesy of: https://github.com/howardsandford
+  (interactive)
+  (shell-command "uuidgen" t)
+  (let ((beg (point)))
+    (forward-word 5)
+    (downcase-region beg (point)))
+)
+
 ;; Hooks
 (add-hook 'python-mode-hook #'elpy-enable)
 (add-hook 'python-mode-hook #'pyenv-mode)
@@ -44,6 +56,7 @@
 (global-set-key (kbd "C-x <right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-x <down>") 'shrink-window)
 (global-set-key (kbd "C-x <up>") 'enlarge-window)
+(global-set-key (kbd "C-c s") 'py-isort-buffer)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -56,7 +69,7 @@
  '(elpy-test-runner (quote elpy-test-pytest-runner))
  '(package-selected-packages
    (quote
-    (yaml-mode py-isort blacken pyenv-mode pipenv elpy material-theme better-defaults))))
+    (json-mode jinja2-mode magit yaml-mode py-isort blacken pyenv-mode pipenv elpy material-theme better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
