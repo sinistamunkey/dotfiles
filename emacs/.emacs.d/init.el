@@ -32,11 +32,15 @@
 ;; ----------------------------------------------------
 (global-linum-mode)
 
+;; Enforce line indicator
+(require 'fill-column-indicator)
+(define-globalized-minor-mode
+  global-fci-mode fci-mode (lambda () (fci-mode 1)))
+(setq fci-rule-column 120)
+(global-fci-mode t)
 
 ;; Custom helpers
 (defun uuid ()
-  ;; Generate a UUID at the cursor.
-  ;; Courtesy of: https://github.com/howardsandford
   (interactive)
   (shell-command "uuidgen" t)
   (let ((beg (point)))
