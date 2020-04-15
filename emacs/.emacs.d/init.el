@@ -17,7 +17,8 @@
     material-theme
     elpy
     pyenv-mode
-    blacken))
+    blacken
+    yasnippet-snippets))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -31,8 +32,6 @@
 ;; BASIC CONFIGURATION
 ;; ----------------------------------------------------
 (global-linum-mode)
-
-;; Enforce line indicator
 (require 'fill-column-indicator)
 (define-globalized-minor-mode
   global-fci-mode fci-mode (lambda () (fci-mode 1)))
@@ -61,6 +60,7 @@
 (global-set-key (kbd "C-x <down>") 'shrink-window)
 (global-set-key (kbd "C-x <up>") 'enlarge-window)
 (global-set-key (kbd "C-c s") 'py-isort-buffer)
+(global-set-key (kbd "C-c i") 'yas-insert-snippet)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -73,7 +73,7 @@
  '(elpy-test-runner (quote elpy-test-pytest-runner))
  '(package-selected-packages
    (quote
-    (json-mode jinja2-mode magit yaml-mode py-isort blacken pyenv-mode pipenv elpy material-theme better-defaults))))
+    (yasnippet-snippets json-mode jinja2-mode magit yaml-mode py-isort blacken pyenv-mode pipenv elpy material-theme better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
