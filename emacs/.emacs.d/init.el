@@ -18,7 +18,8 @@
     elpy
     pyenv-mode
     blacken
-    yasnippet-snippets))
+    yasnippet-snippets
+    protobuf-mode))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -73,7 +74,7 @@
  '(elpy-test-runner (quote elpy-test-pytest-runner))
  '(package-selected-packages
    (quote
-    (yasnippet-snippets json-mode jinja2-mode magit yaml-mode py-isort blacken pyenv-mode pipenv elpy material-theme better-defaults))))
+    (protobuf-mode yasnippet-snippets json-mode jinja2-mode magit yaml-mode py-isort blacken pyenv-mode pipenv elpy material-theme better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
