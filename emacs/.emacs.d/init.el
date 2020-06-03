@@ -55,10 +55,10 @@
 (add-hook 'python-mode-hook #'blacken-mode)
 (add-hook 'python-mode-hook
 	  (lambda ()
-	    add-hook 'after-save-hook 'delete-trailing-whitespace nil 'make-it-local))
+	    (add-hook 'after-save-hook 'delete-trailing-whitespace nil 'make-it-local)))
 (add-hook 'python-mode-hook
 	  (lambda ()
-	    add-hook 'after-save-hook 'blacken-buffer nil 'make-it-local))
+	    (add-hook 'after-save-hook 'blacken-buffer nil 'make-it-local)))
 (add-hook 'json-mode-hook
           (lambda ()
             (make-local-variable 'js-indent-level)
