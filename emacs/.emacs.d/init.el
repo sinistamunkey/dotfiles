@@ -53,8 +53,16 @@
 (add-hook 'python-mode-hook #'elpy-enable)
 (add-hook 'python-mode-hook #'pyenv-mode)
 (add-hook 'python-mode-hook #'blacken-mode)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-(add-hook 'before-save-hook 'blacken-buffer)
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    add-hook 'after-save-hook 'delete-trailing-whitespace nil 'make-it-local))
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    add-hook 'after-save-hook 'blacken-buffer nil 'make-it-local))
+(add-hook 'json-mode-hook
+          (lambda ()
+            (make-local-variable 'js-indent-level)
+            (setq js-indent-level 2)))
 
 ;; Key mapping
 (global-set-key (kbd "C-x <left>") 'shrink-window-horizontally)
