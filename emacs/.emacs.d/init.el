@@ -14,7 +14,6 @@
 
 (defvar my-packages
   '(better-defaults
-    material-theme
     elpy
     pyenv-mode
     blacken
@@ -28,7 +27,6 @@
 ;; Initialise packages
 (setq inhibit-startup-message t)   ;; hide the startup message
 (ido-mode t)                       ;; enable ido mode
-(load-theme 'material)             ;; enable the material theme
 
 ;; BASIC CONFIGURATION
 ;; ----------------------------------------------------
@@ -83,7 +81,7 @@
  '(elpy-test-runner (quote elpy-test-pytest-runner))
  '(package-selected-packages
    (quote
-    (protobuf-mode yasnippet-snippets json-mode jinja2-mode magit yaml-mode py-isort blacken pyenv-mode pipenv elpy material-theme better-defaults))))
+    (buffer-move protobuf-mode yasnippet-snippets json-mode jinja2-mode magit yaml-mode py-isort blacken pyenv-mode pipenv elpy material-theme better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
