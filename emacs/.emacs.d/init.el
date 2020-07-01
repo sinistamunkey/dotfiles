@@ -30,6 +30,7 @@
 
 ;; BASIC CONFIGURATION
 ;; ----------------------------------------------------
+(setq frame-background-mode 'dark)
 (global-linum-mode)
 (require 'fill-column-indicator)
 (define-globalized-minor-mode
@@ -75,13 +76,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("a24c5b3c12d147da6cef80938dca1223b7c7f70f2f382b26308eba014dc4833a" default)))
- '(elpy-test-runner (quote elpy-test-pytest-runner))
  '(package-selected-packages
    (quote
-    (buffer-move protobuf-mode yasnippet-snippets json-mode jinja2-mode magit yaml-mode py-isort blacken pyenv-mode pipenv elpy material-theme better-defaults))))
+    (protobuf-mode yasnippet-snippets blacken pyenv-mode elpy better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
