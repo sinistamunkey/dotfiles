@@ -14,11 +14,14 @@
 
 (defvar my-packages
   '(better-defaults
-    elpy
-    pyenv-mode
     blacken
-    yasnippet-snippets
-    protobuf-mode))
+    editorconfig
+    elpy
+    fill-column-indicator
+    json-mode
+    pyenv-mode
+    yaml-mode
+    yasnippet-snippets))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -32,6 +35,7 @@
 ;; ----------------------------------------------------
 (setq frame-background-mode 'dark)
 (global-linum-mode)
+(editorconfig-mode 1)
 (require 'fill-column-indicator)
 (define-globalized-minor-mode
   global-fci-mode fci-mode (lambda () (fci-mode 1)))
@@ -62,6 +66,7 @@
           (lambda ()
             (make-local-variable 'js-indent-level)
             (setq js-indent-level 2)))
+(add-hook 'after-save-hook #'editorconfig-apply)
 
 ;; Key mapping
 (global-set-key (kbd "C-x <left>") 'shrink-window-horizontally)
@@ -78,7 +83,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (protobuf-mode yasnippet-snippets blacken pyenv-mode elpy better-defaults))))
+    (json-mode editorconfig protobuf-mode yasnippet-snippets blacken pyenv-mode elpy better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
