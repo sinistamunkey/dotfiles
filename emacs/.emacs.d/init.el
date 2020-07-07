@@ -20,6 +20,7 @@
     fill-column-indicator
     json-mode
     pyenv-mode
+    py-isort
     yaml-mode
     yasnippet-snippets))
 
@@ -83,7 +84,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (json-mode editorconfig protobuf-mode yasnippet-snippets blacken pyenv-mode elpy better-defaults))))
+    (py-isort json-mode editorconfig protobuf-mode yasnippet-snippets blacken pyenv-mode elpy better-defaults))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
