@@ -41,3 +41,5 @@ eval "$(pyenv init -)"
 
 # Load any secret variables
 [[ -f ~/.env ]] && source ~/.env
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
