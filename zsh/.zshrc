@@ -12,29 +12,30 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git dotenv)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-export WORKON_HOME=~/.local/share/virtualenvs
+
+# Environment
+export WORKON_HOME=~/Library/Caches/pypoetry/virtualenvs/
 export GOPATH=/Volumes/Development/go
 export GO111MODULE=on
 export ZSH_DOTENV_FILE=.envrc
-PATH=$PATH:$GOPATH/bin
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH:$GOPATH/bin"
 export NVM_DIR="$HOME/.nvm"
-alias spip='source $(pipenv --venv)/bin/activate'
+
+# Configure NVM
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
+# Configure pyenv
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+# Shortcuts
 alias uuid='uuid=$(python -c "import uuid;print(uuid.uuid4())");echo $uuid | pbcopy;echo "Copied $uuid"'
 alias gbpurge='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
-alias cdgo="pushd ${GOPATH}/src/github.com"
-alias cdev="pushd /Volumes/Development"
-alias dockerkill="docker ps -aq | xargs docker stop && docker container prune -f"
-
-# Load pyenv automatically by appending
-# the following to ~/.zshrc:
-
-eval "$(pyenv init -)"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -42,4 +43,4 @@ eval "$(pyenv init -)"
 # Load any secret variables
 [[ -f ~/.env ]] && source ~/.env
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
