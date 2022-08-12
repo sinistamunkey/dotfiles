@@ -1,4 +1,3 @@
-elpa
-elpy
-ido.last
-ac-comphist.dat
+*
+.gitignore
+init.el
