@@ -39,6 +39,7 @@
 ;; ----------------------------------------------------
 (setq frame-background-mode 'dark)
 (setq x-select-enable-clipboard t)
+(setq create-lockfiles nil)
 
 ;; Enable and configure editing modes
 (global-linum-mode)
