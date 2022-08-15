@@ -22,10 +22,9 @@
     json-mode
     pyenv-mode
     py-isort
+    python-pytest
     yaml-mode
-    yasnippet-snippets
-    go-autocomplete
-    go-guru))
+    yasnippet-snippets))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -58,6 +57,20 @@
     (forward-word 5)
     (downcase-region beg (point)))
 )
+
+;; Support copy and paste to osx clipboard
+;; https://gist.github.com/the-kenny/267162
+(defun copy-from-osx ()
+  (shell-command-to-string "pbpaste"))
+
+(defun paste-to-osx (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+
+(setq interprogram-cut-function 'paste-to-osx)
+(setq interprogram-paste-function 'copy-from-osx)
 
 ;; Hooks
 (add-hook 'python-mode-hook #'elpy-enable)
@@ -93,7 +106,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(pbcopy go-guru go-autocomplete go-mode imenu-list py-isort json-mode editorconfig protobuf-mode yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
+   '(python-pytest pbcopy go-guru go-autocomplete go-mode imenu-list py-isort json-mode editorconfig protobuf-mode yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
