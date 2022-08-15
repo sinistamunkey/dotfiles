@@ -13,7 +13,8 @@
   (package-refresh-contents))
 
 (defvar my-packages
-  '(better-defaults
+  '(ag
+    better-defaults
     blacken
     editorconfig
     elpy
@@ -106,7 +107,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(python-pytest pbcopy go-guru go-autocomplete go-mode imenu-list py-isort json-mode editorconfig protobuf-mode yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
+   '(ag python-pytest pbcopy go-guru go-autocomplete go-mode imenu-list py-isort json-mode editorconfig protobuf-mode yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
