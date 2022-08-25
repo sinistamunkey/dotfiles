@@ -4,9 +4,9 @@
 # group: testing
 # --
 def test_${1:does_thing}() -> None:
-    # Arrange
+    # GIVEN
 
-    # Act
+    # WHEN
 
-    # Assert
+    # THEN
     assert False
