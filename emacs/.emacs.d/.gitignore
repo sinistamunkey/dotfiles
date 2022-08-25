@@ -1,3 +1,7 @@
 *
-.gitignore
-init.el
+
+!.gitignore
+!init.el
+
+!snippets/
+!snippets/**

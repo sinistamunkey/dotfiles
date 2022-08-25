@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: unittest_class
+# key: uncl
+# group: testing
+# --
+class ${1:thing}TestCase(TestCase):
+    def test_${2:does_thing}(self):
+        # GIVEN
+
+        # WHEN
+
+        # THEN
+	self.assertFalse(True)
