@@ -40,12 +40,15 @@
 (setq frame-background-mode 'dark)
 (setq x-select-enable-clipboard t)
 (setq create-lockfiles nil)
+(setq make-backup-files nil)
 
 ;; Enable and configure editing modes
 (global-linum-mode)
 (editorconfig-mode 1)
 (imenu-list-minor-mode)
 (require 'fill-column-indicator)
+(require 'yasnippet)
+(yas-global-mode 1)
 (define-globalized-minor-mode
   global-fci-mode fci-mode (lambda () (fci-mode 1)))
 (setq fci-rule-column 120)
