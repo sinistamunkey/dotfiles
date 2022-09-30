@@ -41,6 +41,7 @@
 (setq x-select-enable-clipboard t)
 (setq create-lockfiles nil)
 (setq make-backup-files nil)
+(setq linum-format "%d ")
 
 ;; Enable and configure editing modes
 (global-linum-mode)
@@ -51,7 +52,7 @@
 (yas-global-mode 1)
 (define-globalized-minor-mode
   global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(setq fci-rule-column 120)
+(setq fci-rule-column 90)
 (global-fci-mode t)
 
 ;; Custom helpers
@@ -62,7 +63,6 @@
     (forward-word 5)
     (downcase-region beg (point)))
 )
-
 ;; Support copy and paste to osx clipboard
 ;; https://gist.github.com/the-kenny/267162
 (defun copy-from-osx ()
