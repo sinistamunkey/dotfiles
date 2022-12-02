@@ -25,7 +25,9 @@
     py-isort
     python-pytest
     yaml-mode
-    yasnippet-snippets))
+    yasnippet-snippets
+    tree-sitter
+    tree-sitter-langs))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -49,11 +51,15 @@
 (imenu-list-minor-mode)
 (require 'fill-column-indicator)
 (require 'yasnippet)
+(require 'tree-sitter)
+(require 'tree-sitter-langs)
 (yas-global-mode 1)
 (define-globalized-minor-mode
   global-fci-mode fci-mode (lambda () (fci-mode 1)))
 (setq fci-rule-column 90)
 (global-fci-mode t)
+(global-tree-sitter-mode)
+(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
 ;; Custom helpers
 (defun uuid ()
@@ -81,6 +87,7 @@
 (add-hook 'python-mode-hook #'elpy-enable)
 (add-hook 'python-mode-hook #'pyenv-mode)
 (add-hook 'python-mode-hook #'blacken-mode)
+(add-hook 'python-mode-hook #'tree-sitter-mode)
 (add-hook 'python-mode-hook
 	  (lambda ()
 	    (add-hook 'after-save-hook 'delete-trailing-whitespace nil 'make-it-local)))
@@ -111,7 +118,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(ag python-pytest pbcopy go-guru go-autocomplete go-mode imenu-list py-isort json-mode editorconfig protobuf-mode yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
+   '(tree-sitter-langs tree-sitter ag python-pytest pbcopy imenu-list py-isort json-mode editorconfig yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
