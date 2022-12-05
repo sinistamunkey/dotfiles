@@ -16,6 +16,7 @@
   '(ag
     better-defaults
     blacken
+    dockerfile-mode
     editorconfig
     elpy
     fill-column-indicator
