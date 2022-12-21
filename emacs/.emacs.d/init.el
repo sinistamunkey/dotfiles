@@ -14,6 +14,7 @@
 
 (defvar my-packages
   '(ag
+    auto-virtualenv
     better-defaults
     blacken
     dockerfile-mode
@@ -52,12 +53,14 @@
 (imenu-list-minor-mode)
 (require 'fill-column-indicator)
 (require 'yasnippet)
+(require 'auto-virtualenv)
 (require 'tree-sitter)
 (require 'tree-sitter-langs)
 (yas-global-mode 1)
 (define-globalized-minor-mode
   global-fci-mode fci-mode (lambda () (fci-mode 1)))
 (setq fci-rule-column 90)
+(setq elpy-rpc-timeout 10)
 (global-fci-mode t)
 (global-tree-sitter-mode)
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
@@ -89,6 +92,7 @@
 (add-hook 'python-mode-hook #'pyenv-mode)
 (add-hook 'python-mode-hook #'blacken-mode)
 (add-hook 'python-mode-hook #'tree-sitter-mode)
+(add-hook 'python-mode-hook #'auto-virtualenv-set-virtualenv)
 (add-hook 'python-mode-hook
 	  (lambda ()
 	    (add-hook 'after-save-hook 'delete-trailing-whitespace nil 'make-it-local)))
@@ -119,7 +123,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(tree-sitter-langs tree-sitter ag python-pytest pbcopy imenu-list py-isort json-mode editorconfig yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
+   '(magit auto-virtualenvwrapper tree-sitter-langs tree-sitter ag python-pytest pbcopy imenu-list py-isort json-mode editorconfig yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
