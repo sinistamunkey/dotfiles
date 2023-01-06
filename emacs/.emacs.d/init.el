@@ -23,11 +23,13 @@
     fill-column-indicator
     imenu-list
     json-mode
+    magit
     pyenv-mode
     py-isort
     python-pytest
     yaml-mode
     yasnippet-snippets
+    terraform-mode
     tree-sitter
     tree-sitter-langs))
 
@@ -123,7 +125,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(magit auto-virtualenvwrapper tree-sitter-langs tree-sitter ag python-pytest pbcopy imenu-list py-isort json-mode editorconfig yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
+   '(terraform-mode magit auto-virtualenvwrapper tree-sitter-langs tree-sitter ag python-pytest pbcopy imenu-list py-isort json-mode editorconfig yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
