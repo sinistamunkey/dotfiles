@@ -60,7 +60,7 @@
 (yas-global-mode 1)
 (define-globalized-minor-mode
   global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(setq fci-rule-column 90)
+(setq fci-rule-column 88)
 (setq elpy-rpc-timeout 10)
 (global-fci-mode t)
 (global-tree-sitter-mode)
