@@ -23,6 +23,7 @@
     fill-column-indicator
     imenu-list
     json-mode
+    nyan-mode
     pyenv-mode
     py-isort
     python-pytest
@@ -47,6 +48,18 @@
 (setq create-lockfiles nil)
 (setq make-backup-files nil)
 (setq linum-format "%d ")
+
+; Turn on tabs
+(setq indent-tabs-mode t)
+(setq-default indent-tabs-mode t)
+
+;; Bind the TAB key
+(global-set-key (kbd "TAB") 'self-insert-command)
+
+;; Set the tab width
+(setq-default tab-width 4)
+(setq tab-width 4)
+(setq c-basic-indent 4) 
 
 ;; Enable and configure editing modes
 (global-linum-mode)
@@ -124,7 +137,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(terraform-mode auto-virtualenvwrapper tree-sitter-langs tree-sitter ag python-pytest pbcopy imenu-list py-isort json-mode editorconfig yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
+   '(nyan-mode terraform-mode auto-virtualenvwrapper tree-sitter-langs tree-sitter ag python-pytest pbcopy imenu-list py-isort json-mode editorconfig yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
