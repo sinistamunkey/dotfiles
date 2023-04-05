@@ -1,92 +1,99 @@
-;; init.el -- emacs configuration
-(menu-bar-mode -1)
-
-;; INSTALL PACKAGES
-;; ------------------------------------------------------
+;; ===================================
+;; Packaging
+;; ===================================
+;; Configure MELPA
 (require 'package)
-(require 'ido)
-
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 (when (not package-archive-contents)
   (package-refresh-contents))
 
+;; Custom packages
 (defvar my-packages
-  '(ag
-    auto-virtualenv
+  '(auto-dim-other-buffers
     better-defaults
     blacken
-    dockerfile-mode
-    editorconfig
+    darcula-theme
     elpy
     fill-column-indicator
-    imenu-list
-    json-mode
     nyan-mode
-    pyenv-mode
-    py-isort
-    python-pytest
-    yaml-mode
+    python-isort
     yasnippet-snippets
-    terraform-mode
     tree-sitter
-    tree-sitter-langs))
+    tree-sitter-langs
+    )
+  )
 
+;; Install new packages defined above
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
-;; Initialise packages
-(setq inhibit-startup-message t)   ;; hide the startup message
-(ido-mode t)                       ;; enable ido mode
 
-;; BASIC CONFIGURATION
-;; ----------------------------------------------------
-(setq frame-background-mode 'dark)
-(setq x-select-enable-clipboard t)
-(setq create-lockfiles nil)
-(setq make-backup-files nil)
-(setq linum-format "%d ")
+;; ===================================
+;; Basic Customization
+;; ===================================
+(setq create-lockfiles nil)         ;; Disable lock files
+(setq make-backup-files nil)        ;; Disable backup files
+(setq inhibit-startup-message t)    ;; Hide the startup message
+(global-linum-mode t)               ;; Enable line numbers globally
+(add-hook 'after-init-hook (lambda () (load-theme 'darcula)))
 
-; Turn on tabs
-(setq indent-tabs-mode t)
-(setq-default indent-tabs-mode t)
+;; Configure IDO mode
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+(nyan-mode 1)
+(yas-global-mode 1)
 
-;; Bind the TAB key
-(global-set-key (kbd "TAB") 'self-insert-command)
+(add-hook 'after-init-hook (lambda ()
+  (when (fboundp 'auto-dim-other-buffers-mode)
+    (auto-dim-other-buffers-mode t))))
 
-;; Set the tab width
-(setq-default tab-width 4)
-(setq tab-width 4)
-(setq c-basic-indent 4) 
+;; ===================================
+;; Custom key mapping
+;; ===================================
+(global-set-key (kbd "C-c i") 'yas-insert-snippet)
 
-;; Enable and configure editing modes
-(global-linum-mode)
-(editorconfig-mode 1)
-(imenu-list-minor-mode)
+;; ====================================
+;; Development Setup
+;; ====================================
+;; Fill column editor config
 (require 'fill-column-indicator)
-(require 'yasnippet)
-(require 'auto-virtualenv)
+(setq fci-rule-column 88)           ;; Set the fill culumn indicator to 88 characters
+
+;; treesitter config
 (require 'tree-sitter)
 (require 'tree-sitter-langs)
-(yas-global-mode 1)
-(define-globalized-minor-mode
-  global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(setq fci-rule-column 88)
-(setq elpy-rpc-timeout 10)
-(global-fci-mode t)
-(global-tree-sitter-mode)
-(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
+;; Python mode hooks
+(add-hook 'python-mode-hook #'fci-mode)
+(add-hook 'python-mode-hook #'elpy-enable)
+(add-hook 'python-mode-hook #'tree-sitter-mode)
+(add-hook 'python-mode-hook #'blacken-mode)
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    (add-hook 'after-save-hook 'delete-trailing-whitespace nil 'make-it-local)))
+(add-hook 'python-mode-hook
+	  (lambda ()
+	    (add-hook 'after-save-hook 'blacken-buffer nil 'make-it-local)))
+(add-hook 'python-mode-hook #'python-isort-on-save-mode)
+
+;; ====================================
 ;; Custom helpers
+;; ====================================
 (defun uuid ()
   (interactive)
   (shell-command "uuidgen" t)
   (let ((beg (point)))
     (forward-word 5)
     (downcase-region beg (point)))
-)
+  )
+
+;; ====================================
+;; OSX modifications
+;; ====================================
 ;; Support copy and paste to osx clipboard
 ;; https://gist.github.com/the-kenny/267162
 (defun copy-from-osx ()
@@ -101,43 +108,19 @@
 (setq interprogram-cut-function 'paste-to-osx)
 (setq interprogram-paste-function 'copy-from-osx)
 
-;; Hooks
-(add-hook 'python-mode-hook #'elpy-enable)
-(add-hook 'python-mode-hook #'pyenv-mode)
-(add-hook 'python-mode-hook #'blacken-mode)
-(add-hook 'python-mode-hook #'tree-sitter-mode)
-(add-hook 'python-mode-hook #'auto-virtualenv-set-virtualenv)
-(add-hook 'python-mode-hook
-	  (lambda ()
-	    (add-hook 'after-save-hook 'delete-trailing-whitespace nil 'make-it-local)))
-(add-hook 'python-mode-hook
-	  (lambda ()
-	    (add-hook 'after-save-hook 'blacken-buffer nil 'make-it-local)))
-(add-hook 'json-mode-hook
-          (lambda ()
-            (make-local-variable 'js-indent-level)
-            (setq js-indent-level 2)))
-(add-hook 'after-save-hook #'editorconfig-apply)
-
-;; Key mapping
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-set-key (kbd "C-c '") #'imenu-list-smart-toggle)
-(global-set-key (kbd "C-x <left>") 'shrink-window-horizontally)
-(global-set-key (kbd "C-x <right>") 'enlarge-window-horizontally)
-(global-set-key (kbd "C-x <down>") 'shrink-window)
-(global-set-key (kbd "C-x <up>") 'enlarge-window)
-(global-set-key (kbd "C-c s") 'py-isort-buffer)
-(global-set-key (kbd "C-c i") 'yas-insert-snippet)
-
-
-;; Custom settings
+;; ====================================
+;; Automatically generated custom
+;; ====================================
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-dim-other-buffers-mode t)
+ '(custom-safe-themes
+   '("79586dc4eb374231af28bbc36ba0880ed8e270249b07f814b0e6555bdcb71fab" default))
  '(package-selected-packages
-   '(nyan-mode terraform-mode auto-virtualenvwrapper tree-sitter-langs tree-sitter ag python-pytest pbcopy imenu-list py-isort json-mode editorconfig yasnippet-snippets blacken pyenv-mode elpy better-defaults)))
+   '(auto-dim-other-buffers nyan-mode blacken tree-sitter-langs fill-column-indicator elpy better-defaults)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
