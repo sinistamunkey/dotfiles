@@ -1,16 +1,20 @@
 ;; ===================================
 ;; Packaging
 ;; ===================================
-;; Configure MELPA
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
+(setq package-archives
+'(
+   ("gnu" . "https://elpa.gnu.org/packages/")
+   ("melpa" . "https://melpa.org/packages/")
+))
+
 (package-initialize)
+
 (when (not package-archive-contents)
   (package-refresh-contents))
 
 ;; Custom packages
-(defvar my-packages
+(setq my-packages
   '(auto-dim-other-buffers
     better-defaults
     blacken
@@ -22,13 +26,14 @@
     yasnippet-snippets
     tree-sitter
     tree-sitter-langs
+    use-package
     )
   )
 
 ;; Install new packages defined above
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+(dolist (package my-packages)
+  (unless (package-installed-p package)
+    (package-install package)))
 
 
 ;; ===================================
@@ -38,7 +43,13 @@
 (setq make-backup-files nil)        ;; Disable backup files
 (setq inhibit-startup-message t)    ;; Hide the startup message
 (global-linum-mode t)               ;; Enable line numbers globally
+(setq linum-format "%d ")           ;; Add a bit of padding to the line numbers
 (add-hook 'after-init-hook (lambda () (load-theme 'darcula)))
+
+;; Show full path of buffer in title
+(setq frame-title-format
+      (list (format "%s %%S: %%j " (system-name))
+        '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
 
 ;; Configure IDO mode
 (setq ido-enable-flex-matching t)
@@ -55,6 +66,9 @@
 ;; Custom key mapping
 ;; ===================================
 (global-set-key (kbd "C-c i") 'yas-insert-snippet)
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
 
 ;; ====================================
 ;; Development Setup
@@ -62,6 +76,8 @@
 ;; Fill column editor config
 (require 'fill-column-indicator)
 (setq fci-rule-column 88)           ;; Set the fill culumn indicator to 88 characters
+
+(setq elpy-rpc-virtualenv-path 'current) ;; Enforce elpy to use current virtualenv
 
 ;; treesitter config
 (require 'tree-sitter)
@@ -120,7 +136,8 @@
  '(custom-safe-themes
    '("79586dc4eb374231af28bbc36ba0880ed8e270249b07f814b0e6555bdcb71fab" default))
  '(package-selected-packages
-   '(auto-dim-other-buffers nyan-mode blacken tree-sitter-langs fill-column-indicator elpy better-defaults)))
+   '(org-mode org-modern cython-mode auto-dim-other-buffers nyan-mode blacken tree-sitter-langs fill-column-indicator elpy better-defaults))
+ '(python-shell-interpreter "python"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
