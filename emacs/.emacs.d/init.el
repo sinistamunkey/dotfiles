@@ -21,11 +21,16 @@
     darcula-theme
     elpy
     fill-column-indicator
+    json-mode
+    magit
+    ob-mermaid
     nyan-mode
     python-isort
+    yaml-mode
     yasnippet-snippets
     tree-sitter
     tree-sitter-langs
+    typescript-mode
     use-package
     )
   )
@@ -43,6 +48,7 @@
 (setq make-backup-files nil)        ;; Disable backup files
 (setq inhibit-startup-message t)    ;; Hide the startup message
 (global-linum-mode t)               ;; Enable line numbers globally
+(tool-bar-mode -1)                  ;; Disable tool bar
 (setq linum-format "%d ")           ;; Add a bit of padding to the line numbers
 (add-hook 'after-init-hook (lambda () (load-theme 'darcula)))
 
@@ -55,9 +61,26 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
+
+;; Configure mermaid for Org mode
+(setq ob-mermaid-cli-path "/usr/local/bin/mmdc")
+(org-babel-do-load-languages
+    'org-babel-load-languages
+    '((mermaid . t)
+      (scheme . t)))
+    
+
+;; Nyan mode for reasons
 (nyan-mode 1)
+
+;; Enable yasnippet everywhere
 (yas-global-mode 1)
 
+;; Stop rgrep and others opening up lots of panes
+(setq split-height-threshold nil
+      split-width-threshold nil)
+
+;; COnfigure auto dim buffers
 (add-hook 'after-init-hook (lambda ()
   (when (fboundp 'auto-dim-other-buffers-mode)
     (auto-dim-other-buffers-mode t))))
@@ -95,6 +118,12 @@
 	  (lambda ()
 	    (add-hook 'after-save-hook 'blacken-buffer nil 'make-it-local)))
 (add-hook 'python-mode-hook #'python-isort-on-save-mode)
+
+;; JSON mode hooks
+(add-hook 'json-mode-hook
+          (lambda ()
+            (make-local-variable 'js-indent-level)
+            (setq js-indent-level 2)))
 
 ;; ====================================
 ;; Custom helpers
@@ -135,8 +164,9 @@
  '(auto-dim-other-buffers-mode t)
  '(custom-safe-themes
    '("79586dc4eb374231af28bbc36ba0880ed8e270249b07f814b0e6555bdcb71fab" default))
+ '(elpy-rpc-python-command "python")
  '(package-selected-packages
-   '(org-mode org-modern cython-mode auto-dim-other-buffers nyan-mode blacken tree-sitter-langs fill-column-indicator elpy better-defaults))
+   '(ob-mermaid magit yaml-mode json-mode typescript-mode org-mode org-modern cython-mode auto-dim-other-buffers nyan-mode blacken tree-sitter-langs fill-column-indicator elpy better-defaults))
  '(python-shell-interpreter "python"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
