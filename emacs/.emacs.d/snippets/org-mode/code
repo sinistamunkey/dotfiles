@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: code
+# key: code
+# group: formatting
+# --
+#+begin_src ${1:code_format}
+#+end_src
