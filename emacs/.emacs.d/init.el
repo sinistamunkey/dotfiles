@@ -28,10 +28,6 @@
     python-isort
     yaml-mode
     yasnippet-snippets
-    tree-sitter
-    tree-sitter-langs
-    typescript-mode
-    use-package
     )
   )
 
@@ -47,7 +43,6 @@
 (setq create-lockfiles nil)         ;; Disable lock files
 (setq make-backup-files nil)        ;; Disable backup files
 (setq inhibit-startup-message t)    ;; Hide the startup message
-(global-linum-mode t)               ;; Enable line numbers globally
 (tool-bar-mode -1)                  ;; Disable tool bar
 (setq linum-format "%d ")           ;; Add a bit of padding to the line numbers
 (setq window-divider-mode nil)      ;; Disable the window divider
@@ -118,15 +113,9 @@
 (setq elpy-rpc-virtualenv-path 'current) ;; Enforce elpy to use current virtualenv
 (setq elpy-rpc-timeout 10)  ;; Increase timeout due to slow virtualenvs and big codebases
 
-
-;; treesitter config
-(require 'tree-sitter)
-(require 'tree-sitter-langs)
-
 ;; Python mode hooks
 (add-hook 'python-mode-hook #'fci-mode)
 (add-hook 'python-mode-hook #'elpy-enable)
-(add-hook 'python-mode-hook #'tree-sitter-mode)
 (add-hook 'python-mode-hook #'blacken-mode)
 (add-hook 'python-mode-hook
 	  (lambda ()
@@ -180,28 +169,18 @@
 
 (setq interprogram-cut-function 'paste-to-osx)
 (setq interprogram-paste-function 'copy-from-osx)
-
-;; ====================================
-;; Automatically generated custom
-;; ====================================
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(auto-dim-other-buffers-mode t)
  '(custom-safe-themes
-   '("79586dc4eb374231af28bbc36ba0880ed8e270249b07f814b0e6555bdcb71fab" default))
- '(display-time-mode t)
- '(elpy-rpc-python-command "python")
+   '("3f1dcd824a683e0ab194b3a1daac18a923eed4dba5269eecb050c718ab4d5a26" default))
  '(package-selected-packages
-   '(plantuml-mode ob-mermaid magit yaml-mode json-mode typescript-mode org-mode org-modern cython-mode auto-dim-other-buffers nyan-mode blacken tree-sitter-langs fill-column-indicator elpy better-defaults))
- '(python-shell-interpreter "python")
- '(tool-bar-mode nil)
- '(warning-suppress-types '(((python python-shell-completion-native-turn-on-maybe)))))
+   '(elpy python-isort yasnippet-snippets yaml-mode fill-column-indicator plantuml-mode nyan-mode magit json-mode darcula-theme blacken better-defaults auto-dim-other-buffers)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#2B2B2B" :foreground "#a9b7c6" :inverse-video nil :box nil :strike-through nil :extend nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "nil" :family "Menlo")))))
+ )
