@@ -60,6 +60,31 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
+
+;; Configure time display
+(display-time-mode 1)
+(setq display-time-format "%a %d %b %H:%M")
+
+;; Nyan mode for reasons
+(nyan-mode 1)
+
+;; Enable yasnippet everywhere
+(yas-global-mode 1)
+
+;; Stop rgrep and others opening up lots of panes
+(setq split-height-threshold nil
+      split-width-threshold nil)
+
+;; Configure auto dim buffers
+(add-hook 'after-init-hook (lambda ()
+  (when (fboundp 'auto-dim-other-buffers-mode)
+    (auto-dim-other-buffers-mode t))))
+
+;; ===================================
+;; Org mode config
+;; ===================================
+(add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
+
 ;; Configure PlantUML mode
 (setq org-plantuml-jar-path "~/plantuml.jar")
 (setq plantuml-jar-path "~/plantuml.jar")
@@ -76,25 +101,6 @@
 ;; Enforce PNG as the output type of plantuml
 (setq plantuml-output-type "png")
 
-;; Configure time display
-(display-time-mode 1)
-(setq display-time-format "%a %d %b %H:%M")
-
-;; Nyan mode for reasons
-(nyan-mode 1)
-
-;; Enable yasnippet everywhere
-(yas-global-mode 1)
-
-;; Stop rgrep and others opening up lots of panes
-(setq split-height-threshold nil
-      split-width-threshold nil)
-
-;; COnfigure auto dim buffers
-(add-hook 'after-init-hook (lambda ()
-  (when (fboundp 'auto-dim-other-buffers-mode)
-    (auto-dim-other-buffers-mode t))))
-
 ;; ===================================
 ;; Custom key mapping
 ;; ===================================
@@ -102,6 +108,28 @@
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
+
+;; ===================================
+;; Configure line numbers
+;; ===================================
+(require 'display-line-numbers)
+
+(defcustom display-line-numbers-exempt-modes
+  '(vterm-mode eshell-mode shell-mode term-mode ansi-term-mode)
+  "Major modes on which to disable line numbers."
+  :group 'display-line-numbers
+  :type 'list
+  :version "green")
+
+(defun display-line-numbers--turn-on ()
+  "Turn on line numbers except for certain major modes.
+Exempt major modes are defined in `display-line-numbers-exempt-modes'."
+  (unless (or (minibufferp)
+              (member major-mode display-line-numbers-exempt-modes))
+    (display-line-numbers-mode)))
+
+(global-display-line-numbers-mode)
+
 
 ;; ====================================
 ;; Development Setup
@@ -183,4 +211,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#2B2B2B" :foreground "#a9b7c6" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 140 :width normal :foundry "nil" :family "Menlo")))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#2B2B2B" :foreground "#a9b7c6" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 120 :width normal :foundry "nil" :family "Menlo")))))
