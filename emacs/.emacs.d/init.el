@@ -23,8 +23,10 @@
     fill-column-indicator
     json-mode
     magit
-    plantuml-mode
     nyan-mode
+    org-journal
+    org-roam
+    plantuml-mode
     python-isort
     yaml-mode
     yasnippet-snippets
@@ -101,6 +103,18 @@
 ;; Enforce PNG as the output type of plantuml
 (setq plantuml-output-type "png")
 
+;; Override the default margin on export
+(setq org-latex-packages-alist '(("margin=2cm" "geometry" nil)))
+
+;; Enable org-journal
+(require 'org-journal)
+
+;; Configure org-roam
+;; (make-directory "~/Documents/org-roam")
+(setq org-roam-directory (file-truename "~/Documents/org-roam"))
+(org-roam-db-autosync-mode)
+(setq find-file-visit-truename t)  ;; Enable symlink following
+
 ;; ===================================
 ;; Custom key mapping
 ;; ===================================
@@ -139,7 +153,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (setq fci-rule-column 88)           ;; Set the fill culumn indicator to 88 characters
 
 (setq elpy-rpc-virtualenv-path 'current) ;; Enforce elpy to use current virtualenv
-(setq elpy-rpc-timeout 10)  ;; Increase timeout due to slow virtualenvs and big codebases
+(setq elpy-rpc-timeout 50)  ;; Increase timeout due to slow virtualenvs and big codebases
 
 ;; Python mode hooks
 (add-hook 'python-mode-hook #'fci-mode)
@@ -169,6 +183,12 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 	  (lambda ()
 	    (make-local-variable 'plantuml-indent-level)
 	    (setq plantuml-indent-level 2)))
+
+;; SQL mode hooks
+(add-hook 'sql-mode-hook
+	  (lambda ()
+	    (make-local-variable 'sql-indent-level)
+	    (setq sql-indent-level 4)))
 
 ;; ====================================
 ;; Custom helpers
@@ -205,10 +225,10 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
  '(custom-safe-themes
    '("3f1dcd824a683e0ab194b3a1daac18a923eed4dba5269eecb050c718ab4d5a26" default))
  '(package-selected-packages
-   '(elpy python-isort yasnippet-snippets yaml-mode fill-column-indicator plantuml-mode nyan-mode magit json-mode darcula-theme blacken better-defaults auto-dim-other-buffers)))
+   '(org-roam org-journal elpy python-isort yasnippet-snippets yaml-mode fill-column-indicator plantuml-mode nyan-mode magit json-mode darcula-theme blacken better-defaults auto-dim-other-buffers)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :extend nil :stipple nil :background "#2B2B2B" :foreground "#a9b7c6" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 120 :width normal :foundry "nil" :family "Menlo")))))
+ '(default ((t (:inherit nil :extend nil :stipple nil :background "#2B2B2B" :foreground "#a9b7c6" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight regular :height 140 :width normal :foundry "nil" :family "Menlo")))))
