@@ -29,7 +29,7 @@
 (require 'ui)
 (require 'navigation)
 (require 'development)
-(require 'python)
+(require 'python-config)
 (require 'languages)
 (require 'org-mode)
 (require 'platform)
