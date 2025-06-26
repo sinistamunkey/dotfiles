@@ -21,6 +21,9 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+;; Enable auto-refresh of buffers when files change on disk
+(global-auto-revert-mode 1)
+
 ;; ===================================
 ;; Load Configuration Modules
 ;; ===================================
@@ -34,6 +37,7 @@
 (require 'org-mode)
 (require 'platform)
 (require 'functions)
+(require 'images)
 
 ;; ===================================
 ;; Custom File

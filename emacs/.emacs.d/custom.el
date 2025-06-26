@@ -11,11 +11,7 @@
      "79586dc4eb374231af28bbc36ba0880ed8e270249b07f814b0e6555bdcb71fab"
      default))
  '(display-time-mode t)
- '(package-selected-packages
-   '(auto-dim-other-buffers better-defaults eglot exec-path-from-shell
-		    fill-column-indicator grip-mode json-mode magit 
-		    markdown-mode markdown-preview-mode nyan-mode org-mode
-		    plantuml-mode yaml-mode yasnippet-snippets use-package))
+ '(package-selected-packages nil)
  '(python-shell-interpreter "python")
  '(tool-bar-mode nil)
  '(warning-suppress-types '(((python python-shell-completion-native-turn-on-maybe)))))

@@ -30,7 +30,9 @@
   (setq custom-safe-themes t)
   (add-hook 'after-init-hook (lambda () 
                                (load-theme 'darcula t)
-                               (set-face-attribute 'fringe nil :background 'unspecified :foreground 'unspecified))))
+                               ;; Fix fringe face warnings by setting to unspecified
+                               (when (facep 'fringe)
+                                 (set-face-attribute 'fringe nil :background 'unspecified :foreground 'unspecified)))))
 
 ;; Fun packages
 (use-package nyan-mode
