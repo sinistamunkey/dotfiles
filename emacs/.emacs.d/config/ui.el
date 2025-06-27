@@ -25,14 +25,11 @@
 (setq display-time-format "%a %d %b %H:%M")
 
 ;; Theme configuration
-(use-package darcula-theme
+(use-package nord-theme
   :config
   (setq custom-safe-themes t)
   (add-hook 'after-init-hook (lambda () 
-                               (load-theme 'darcula t)
-                               ;; Fix fringe face warnings by setting to unspecified
-                               (when (facep 'fringe)
-                                 (set-face-attribute 'fringe nil :background 'unspecified :foreground 'unspecified)))))
+                               (load-theme 'nord t))))
 
 ;; Fun packages
 (use-package nyan-mode

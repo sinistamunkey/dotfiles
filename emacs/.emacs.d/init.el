@@ -25,6 +25,13 @@
 (global-auto-revert-mode 1)
 
 ;; ===================================
+;; Load Custom File First
+;; ===================================
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
+;; ===================================
 ;; Load Configuration Modules
 ;; ===================================
 (add-to-list 'load-path (expand-file-name "config" user-emacs-directory))
@@ -39,11 +46,5 @@
 (require 'functions)
 (require 'images)
 
-;; ===================================
-;; Custom File
-;; ===================================
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(when (file-exists-p custom-file)
-  (load custom-file))
 
 ;;; init.el ends here
