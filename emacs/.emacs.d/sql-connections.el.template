@@ -1,0 +1,48 @@
+;;; sql-connections.el --- SQL connection configuration (PRIVATE) -*- lexical-binding: t; -*-
+
+;; This file contains database connection details and should NOT be committed.
+;; Copy this template to sql-connections.el and fill in your actual credentials.
+
+(setq sql-connection-alist
+      '(
+        ;; PostgreSQL example - use descriptive names
+        (pricing-local
+         (sql-product 'postgres)
+         (sql-server "localhost")
+         (sql-port 5432)
+         (sql-user "your-username")
+         (sql-password "your-password")
+         (sql-database "pricing"))
+
+        ;; MySQL example
+        (analytics-local
+         (sql-product 'mysql)
+         (sql-server "localhost")
+         (sql-port 3306)
+         (sql-user "root")
+         (sql-password "your-password")
+         (sql-database "analytics"))
+
+        ;; SQLite example
+        (cache-local
+         (sql-product 'sqlite)
+         (sql-database "~/projects/myapp/cache.db"))
+        ))
+
+;; Helper function to connect using saved connections
+(defun sql-connect-preset (name)
+  "Connect to a predefined SQL connection from sql-connection-alist."
+  (interactive
+   (list (completing-read "Connection: "
+                          (mapcar #'car sql-connection-alist)
+                          nil t)))
+  (let* ((connection (assoc (intern name) sql-connection-alist))
+         (sql-product (cadr (assoc 'sql-product connection)))
+         (sql-server (cadr (assoc 'sql-server connection)))
+         (sql-port (cadr (assoc 'sql-port connection)))
+         (sql-user (cadr (assoc 'sql-user connection)))
+         (sql-password (cadr (assoc 'sql-password connection)))
+         (sql-database (cadr (assoc 'sql-database connection))))
+    (sql-connect sql-product (symbol-name (car connection)))))
+
+;;; sql-connections.el ends here

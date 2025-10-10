@@ -1,0 +1,20 @@
+*
+
+!.gitignore
+!init.el
+
+!config/
+!config/**
+
+!snippets/
+!snippets/**
+
+!org-templates/
+!org-templates/**
+
+!README.md
+!CLAUDE.md
+
+# SQL connections (contains credentials)
+sql-connections.el
+!sql-connections.el.template

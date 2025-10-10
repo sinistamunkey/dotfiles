@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: plantuml
+# key: pluml
+# group: diagrams
+# --
+#+begin_src plantuml :file ${1:filename}.png
+#+end_src

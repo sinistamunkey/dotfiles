@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: pytest_django_test
+# key: pytdj
+# group: testing
+# --
+@pytest.mark.django_db
+def test_${1:does_thing}() -> None:
+    # GIVEN
+
+    # WHEN
+
+    # THEN
+    assert False

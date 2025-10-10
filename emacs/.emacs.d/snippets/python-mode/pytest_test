@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: pytest_test
+# key: pyt
+# group: testing
+# --
+def test_${1:does_thing}() -> None:
+    # GIVEN
+
+    # WHEN
+
+    # THEN
+    assert False

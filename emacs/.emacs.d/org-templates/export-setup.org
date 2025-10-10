@@ -1,0 +1,26 @@
+#+HTML_HEAD: <meta charset="utf-8"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css"><style>body{font-family:Arial,sans-serif;max-width:none;margin:0 2em;}pre,code{font-family:Menlo,Monaco,monospace;white-space:pre;line-height:1.2;}pre.src{background:#f8f8f8;padding:10px;border-radius:4px;}pre.src:before{content:none;display:none;}.listing-number{text-align:center;font-style:italic;margin-top:0.5em;font-size:0.9em;color:#666;}blockquote{font-style:italic;color:#666;}table{border-collapse:collapse;width:100%;margin:1em 0;}table td,table th{padding:0.5em 0.75em;text-align:left;border-bottom:1px solid #ddd;}table thead th{border-bottom:2px solid #333;font-weight:bold;}table tbody tr:last-child td{border-bottom:2px solid #333;}h5,h6{font-size:1em;color:#666;font-weight:normal;}</style><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/python.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/sql.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/languages/json.min.js"></script><script>document.addEventListener('DOMContentLoaded', function() { document.querySelectorAll('pre.src.src-python, pre.src.src-sql, pre.src.src-json').forEach(function(block) { hljs.highlightElement(block); }); });</script>
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \usepackage{unicode-math}
+#+LATEX_HEADER: \defaultfontfeatures{Ligatures=TeX}
+#+LATEX_HEADER: \setmainfont{Arial}
+#+LATEX_HEADER: \setsansfont{Helvetica}
+#+LATEX_HEADER: \setmonofont{Menlo}
+#+LATEX_HEADER: \setcounter{secnumdepth}{0}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{titlesec}
+#+LATEX_HEADER: \titleformat{\subparagraph}{\normalsize\color{gray}}{\thesubparagraph}{1em}{}
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \usemintedstyle{github}
+#+LATEX_HEADER: \setminted{breaklines=true,fontsize=\small,bgcolor=lightgray!10}
+#+LATEX_HEADER: \usepackage{booktabs}
+#+LATEX_HEADER: \usepackage{tabularx}
+#+LATEX_HEADER: \renewcommand{\arraystretch}{1.2}
+#+LATEX_COMPILER: xelatex
+#+ATTR_LATEX: :booktabs t :environment tabularx :width \textwidth :align |l|X|X|
+#+OPTIONS: ^:{} *:t -:nil ::t |:t e:nil H:6 num:nil
+#+HTML_DOCTYPE: html5
+#+PROPERTY: header-args :eval never-export
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+PUBLISH_BASE_EXTENSION: org
