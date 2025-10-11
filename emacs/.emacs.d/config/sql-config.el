@@ -11,11 +11,12 @@
   :bind (:map sql-interactive-mode-map
               ("M-<return>" . newline))  ; M-RET to insert newline without submitting
   :config
-  ;; Set MySQL client program
-  (setq sql-mysql-program "/opt/homebrew/opt/mysql/bin/mysql")
+  ;; Set MySQL client program (dynamically find in PATH)
+  (setq sql-mysql-program (or (executable-find "mysql")
+                               "/opt/homebrew/opt/mysql/bin/mysql"))
 
-  ;; Set PostgreSQL client program
-  (setq sql-postgres-program "psql")
+  ;; Set PostgreSQL client program (dynamically find in PATH)
+  (setq sql-postgres-program (or (executable-find "psql") "psql"))
 
   ;; MySQL connection options
   (setq sql-mysql-options '("--protocol=tcp"))
