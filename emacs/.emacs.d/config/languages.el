@@ -1,5 +1,23 @@
 ;;; languages.el --- Language mode configurations -*- lexical-binding: t; -*-
 
+;; ===================================
+;; Add languages subdirectory to load path
+;; ===================================
+(add-to-list 'load-path (expand-file-name "languages" (file-name-directory load-file-name)))
+
+;; ===================================
+;; Load Language-Specific Configurations
+;; ===================================
+(let ((lang-dir (expand-file-name "languages" (file-name-directory load-file-name))))
+  (load (expand-file-name "python" lang-dir))
+  (load (expand-file-name "lua" lang-dir))
+  (load (expand-file-name "sql" lang-dir))
+  (load (expand-file-name "org" lang-dir)))
+
+;; ===================================
+;; General Language Modes
+;; ===================================
+
 ;; JSON mode
 (use-package json-mode
   :config

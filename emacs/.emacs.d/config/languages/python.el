@@ -1,4 +1,4 @@
-;;; python-config.el --- Python development configuration -*- lexical-binding: t; -*-
+;;; python.el --- Python development configuration -*- lexical-binding: t; -*-
 
 ;; Load built-in python mode first
 (require 'python)
@@ -234,6 +234,6 @@
               (when (string-match-p "\\*pytest\\*" (buffer-name))
                 (local-set-key (kbd "M-/") 'completion-at-point)))))
 
-(provide 'python-config)
-;;; python-config.el ends here
+(provide 'python)
+;;; python.el ends here
 

@@ -1,4 +1,4 @@
-;;; sql-config.el --- SQL database client configuration -*- lexical-binding: t; -*-
+;;; sql.el --- SQL database client configuration -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Configuration for SQL mode and database connections
@@ -30,4 +30,4 @@
       (load connections-file))))
 
 (provide 'sql-config)
-;;; sql-config.el ends here
+;;; sql.el ends here

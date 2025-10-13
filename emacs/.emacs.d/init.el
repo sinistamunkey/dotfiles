@@ -57,13 +57,10 @@
 (require 'ui)
 (require 'navigation)
 (require 'development)
-(require 'python-config)
 (require 'languages)
-(require 'org-mode)
 (require 'platform)
 (require 'functions)
 (require 'images)
 (require 'xwidget-config)
-(require 'sql-config)
 
 ;;; init.el ends here

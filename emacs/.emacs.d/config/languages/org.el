@@ -1,4 +1,4 @@
-;;; org-mode.el --- Org mode and PlantUML configuration -*- lexical-binding: t; -*-
+;;; org.el --- Org mode and PlantUML configuration -*- lexical-binding: t; -*-
 
 ;; Install peg (required by org-ql)
 (use-package peg
@@ -89,5 +89,5 @@
   (define-key org-mode-map (kbd "C-c i") #'imenu)
   (define-key org-mode-map (kbd "C-c j") #'org-goto))
 
-(provide 'org-mode)
-;;; org-mode.el ends here
+(provide 'org-config)
+;;; org.el ends here
