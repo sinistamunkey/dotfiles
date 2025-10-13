@@ -39,6 +39,29 @@
 (use-package treemacs-projectile
   :after (treemacs projectile))
 
+;; Treemacs-Magit integration for better git support
+(use-package treemacs-magit
+  :after (treemacs magit))
+
+;; Display git branch in treemacs modeline
+(defun my-treemacs-show-git-branch ()
+  "Display git branch in treemacs modeline."
+  (when (and (eq major-mode 'treemacs-mode)
+             (treemacs-current-workspace))
+    (let* ((project (treemacs-project-at-point))
+           (path (when project (treemacs-project->path project))))
+      (when (and path (vc-git-root path))
+        (let ((default-directory path))
+          (condition-case nil
+              (format " [%s]" (car (vc-git-branches)))
+            (error "")))))))
+
+(add-hook 'treemacs-mode-hook
+          (lambda ()
+            (setq mode-line-format
+                  (append mode-line-format
+                          '(" " (:eval (my-treemacs-show-git-branch)))))))
+
 ;; Balance window sizes
 (global-set-key (kbd "C-c =") 'balance-windows)
 
