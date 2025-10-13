@@ -1,6 +1,13 @@
 ;;; init.el --- Emacs configuration entry point -*- lexical-binding: t; -*-
 
 ;; ===================================
+;; Early Window System Settings
+;; ===================================
+;; These must be set before window system initialization
+(when (eq system-type 'darwin)
+  (setq ns-use-native-fullscreen t))
+
+;; ===================================
 ;; Package Management
 ;; ===================================
 (require 'package)
