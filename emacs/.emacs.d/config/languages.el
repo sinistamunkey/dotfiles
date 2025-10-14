@@ -11,7 +11,7 @@
 (let ((lang-dir (expand-file-name "languages" (file-name-directory load-file-name))))
   (load (expand-file-name "python" lang-dir))
   (load (expand-file-name "lua" lang-dir))
-  (load (expand-file-name "sql" lang-dir))
+  (load (expand-file-name "sql-config" lang-dir))
   (load (expand-file-name "org" lang-dir)))
 
 ;; ===================================
