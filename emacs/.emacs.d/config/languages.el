@@ -12,6 +12,7 @@
   (load (expand-file-name "python" lang-dir))
   (load (expand-file-name "lua" lang-dir))
   (load (expand-file-name "sql-config" lang-dir))
+  (load (expand-file-name "typescript-config" lang-dir))
   (load (expand-file-name "org" lang-dir)))
 
 ;; ===================================
