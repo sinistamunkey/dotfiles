@@ -5,7 +5,9 @@
 ;; ===================================
 ;; These must be set before window system initialization
 (when (eq system-type 'darwin)
-  (setq ns-use-native-fullscreen t))
+  (setq ns-use-native-fullscreen t)
+  (add-hook 'window-setup-hook
+            (lambda () (set-frame-parameter nil 'fullscreen 'fullscreen))))
 
 ;; ===================================
 ;; Package Management
