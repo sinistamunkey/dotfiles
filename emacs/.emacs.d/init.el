@@ -59,6 +59,7 @@
 (require 'ui)
 (require 'navigation)
 (require 'development)
+(require 'text-editing)
 (require 'languages)
 (require 'platform)
 (require 'functions)
