@@ -23,5 +23,12 @@
   (setq flyspell-issue-message-flag nil)  ; Reduce messages
   (setq flyspell-issue-welcome-flag nil))
 
+;; ===================================
+;; Exit Confirmation
+;; ===================================
+
+;; Prompt before exiting Emacs to prevent accidental quits
+(setq confirm-kill-emacs 'yes-or-no-p)
+
 (provide 'text-editing)
 ;;; text-editing.el ends here
