@@ -29,10 +29,16 @@
         treemacs-filewatch-mode t
         treemacs-fringe-indicator-mode 'always-visible
         treemacs-git-mode 'deferred)
-  ;; Hide files from .gitignore
-  (treemacs-hide-gitignored-files-mode 1)
   ;; Disable line numbers in treemacs
   (add-hook 'treemacs-mode-hook (lambda () (display-line-numbers-mode -1)))
+  ;; Enable hiding gitignored files
+  ;; Use advice to ensure it's enabled every time treemacs opens
+  (defun my-treemacs-enable-hide-gitignored (&rest _)
+    "Enable hiding gitignored files in treemacs."
+    (unless treemacs-hide-gitignored-files-mode
+      (treemacs-hide-gitignored-files-mode 1)))
+
+  (advice-add 'treemacs :after #'my-treemacs-enable-hide-gitignored)
   :bind
   (("<f8>" . treemacs)
    ("C-c t" . treemacs)))

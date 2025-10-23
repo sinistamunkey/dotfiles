@@ -13,12 +13,11 @@
 ;; Configure aspell for better performance and British English
 (setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB"))
 
-;; Enable flyspell for text modes
+;; Enable flyspell for text modes only
 (use-package flyspell
   :ensure nil  ; Built-in package
   :hook
-  ((text-mode . flyspell-mode)
-   (prog-mode . flyspell-prog-mode))  ; Check comments/strings in code
+  (text-mode . flyspell-mode)
   :config
   (setq flyspell-issue-message-flag nil)  ; Reduce messages
   (setq flyspell-issue-welcome-flag nil))
