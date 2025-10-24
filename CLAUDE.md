@@ -6,6 +6,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a personal dotfiles repository containing configurations for Emacs and Tmux, with an automated installation script that creates symlinks and backups.
 
+## Documentation Structure
+
+This repository uses modular documentation that mirrors the directory structure:
+
+- **This file (root):** Repository overview, installation, adding new tools
+- **[emacs/CLAUDE.md](emacs/CLAUDE.md):** Detailed Emacs configuration
+  - Architecture and module system
+  - Python/Poetry/LSP integration
+  - Custom functions and keybindings
+  - PlantUML and xwidget setup
+- **tmux/.tmux.conf:** Tmux configuration (inline comments)
+  - Development session configs in `.tmux/` directory
+
 ## Installation
 
 ```bash
